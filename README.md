@@ -81,9 +81,8 @@ Level Wizard terdiri dari:
 | Level           | XP           |
 | --------------- | ------------ |
 | Beginner Wizard | 0 - 499 XP   |
-| Advanced Wizard | 499 - 1000 XP |
-| Expert Wizard   | 0+ XP      |
-
+| Advanced Wizard | 500 - 1499 XP |
+| Expert Wizard   | 1500+ XP      |
 Semakin banyak course dan spell yang dieksplorasi, semakin tinggi level wizard pengguna.
 
 ---
