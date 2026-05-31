@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap');
+ 
+@font-face {
+  font-family: 'HarryP';
+  src: url('../fonts/HarryP.ttf') format('truetype');
+  font-weight: normal; font-style: normal;
+}
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+  --cream:      #F6E9C8;
+  --gold:       #FFC300;
+  --gold-hover: #FBD747;
+  --gold-dark:  #c9960c;
+  --navy:       #091821;
+  --blue-border:#3a8fd4;
+  --gryffindor: #BE4916;
+  --slytherin:  #379938;
+  --ravenclaw:  #4C5ED9;
+  --hufflepuff: #FFC300;
+}
+ 
+html { scroll-behavior: smooth; }
+ 
+body {
+  font-family: 'Cinzel', sans-serif;
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: none;
+  background:
+    url('../img/landingpage.png') center/cover no-repeat fixed;
+}
+ 
+/* ── CURSOR ── */
+.cursor-dot, .cursor-ring {
+  position: fixed; pointer-events: none; z-index: 9999;
+  border-radius: 50%; transform: translate(-50%,-50%);
+}
+.cursor-dot  { width: 6px; height: 6px; background: var(--gold); }
+.cursor-ring {
+  width: 28px; height: 28px;
+  border: 1.5px solid rgba(255,195,0,.5);
+  transition: width .15s, height .15s, border-color .15s;
+}
+ 
+#particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,195,0,.8), transparent);
+  animation: floatP linear infinite; opacity: 0;
+}
+@keyframes floatP {
+  0%   { opacity: 0; transform: translateY(0) scale(1); }
+  10%  { opacity: .6; } 90% { opacity: .2; }
+  100% { opacity: 0; transform: translateY(-100vh) scale(.25); }
+}
+ 
+.star {
+  position: absolute; border-radius: 50%; background: #fff;
+  animation: twinkle ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,100% { opacity: .15; transform: scale(1); }
+  50%     { opacity: 1;   transform: scale(1.7); }
+}
+ 
+.page-hero {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 8, 15, 0.72);
+  padding: 32px 40px;
+  position: relative;
+  z-index: 2;
+}
+ 
+#hero {
+  position: relative;
+    width:95vw;
+    height:92vh;
+
+    max-width:none;
+    max-height:none;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+ 
+  border-radius: 70px;
+ 
+  border: 1.5px solid rgba(23, 30, 36, 0.65);
+  box-shadow:
+    0 0 0 1px rgba(30, 90, 150, 0.25),
+    0 0 25px rgba(20, 70, 120, 0.35),
+    0 24px 70px rgba(0,0,0,.6);
+}
+ 
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('../img/landingpage.png') center/cover no-repeat;
+  border-radius: 16px;
+  animation: slowZoom 24s ease-in-out infinite alternate;
+}
+@keyframes slowZoom {
+  from { transform: scale(1.0) translateX(0); }
+  to   { transform: scale(1.06) translateX(-8px); }
+}
+ 
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0; border-radius: 16px;
+  background: linear-gradient(to right,
+    rgba(5,10,18,.82) 0%,
+    rgba(5,10,18,.35) 48%,
+    rgba(5,10,18,.08) 100%);
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0; border-radius: 16px;
+  background: linear-gradient(to bottom,
+    rgba(5,10,18,.20) 0%,
+    rgba(5,10,18,.04) 30%,
+    rgba(5,10,18,.28) 72%,
+    rgba(5,10,18,.75) 100%);
+}
+ 
+.fog {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  opacity: .11; border-radius: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='800' height='400' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E") repeat;
+  animation: driftFog 35s linear infinite;
+}
+@keyframes driftFog { from {background-position:0 0} to {background-position:800px 200px} }
+ 
+.stars { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+ 
+#navbar {
+  position: absolute; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: flex-start; justify-content: flex-end;
+  padding: 0 52px;
+  animation: slideDown .8s ease both;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.nav-brand-tab {
+  position: absolute; left: 50%; top: 0;
+  transform: translateX(-50%);
+  background: rgba(21, 29, 42, 0.785);
+  backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(58,143,212,.5);
+  border-top: none;
+  border-radius: 0 0 24px 24px;
+  padding: 12px 40px 16px;
+  display: flex; align-items: center; gap: 13px;
+  text-decoration: none; white-space: nowrap;
+  box-shadow: 0 6px 28px rgba(20,60,110,.4);
+}
+.nav-crest {
+  width: 48px; height: 48px; border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 20px rgba(255,195,0,.4);
+  animation: glowPulse 3s ease-in-out infinite; flex-shrink: 0;
+}
+.nav-crest img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 16px rgba(255,195,0,.32); }
+  50%     { box-shadow: 0 0 30px rgba(255,195,0,.68); }
+}
+.nav-wordmark {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-weight: 400; font-size: 2rem;
+  letter-spacing: .06em; color: var(--cream);
+  text-shadow: 0 0 16px rgba(246,233,200,.28);
+}
+ 
+.nav-links {
+  display: flex; gap: 40px; list-style: none; margin-top: 30px;
+}
+.nav-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem; letter-spacing: .05em;
+  color: var(--cream); text-decoration: none;
+  position: relative; padding-bottom: 4px; transition: color .3s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%; height: 1.5px; background: var(--gold);
+  transition: transform .3s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { transform: translateX(-50%) scaleX(1); }
+ 
+.hero-content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 6% 90px;
+}
+.hero-text { max-width: 1500px; }
+ 
+.welcome-label {
+  font-size:2rem;
+  letter-spacing:.20em;
+  margin-bottom:20px;
+  animation: fadeUp .9s .3s both;
+}
+ 
+.hero-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-weight: 400;
+  font-size: 160px;
+  line-height: .880;
+  color: var(--gold);
+  text-shadow:
+    0 0 8px rgba(255,195,0,.75),
+    0 0 55px rgba(255,195,0,.32),
+    2px 3px 0 rgba(0,0,0,.72);
+  animation: fadeUp .9s .42s both;
+  letter-spacing: .03em;
+}
+.hero-title span { display: block; }
+ 
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
+.hero-buttons {
+  display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap;
+  animation: fadeUp .9s .6s both;
+}
+ 
+.btn {
+  width: 300px; height: 75px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.9rem; font-weight: 300;
+  letter-spacing:.05em; text-decoration: none;
+  padding: 13px 40px; border-radius: 50px;
+  cursor: pointer;
+  transition: background .25s, border-color .25s, color .25s,
+              transform .2s, box-shadow .25s;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 2px solid transparent;
+}
+.btn-register {
+  background: transparent; color: var(--gold);
+  border-color: rgba(246,233,200,.5);
+}
+.btn-register:hover {
+  border-color: var(--gold); color: var(--gold);
+  box-shadow: 0 0 16px rgba(255,195,0,.2); transform: translateY(-2px);
+}
+.btn-register:active {
+  background: var(--gold); border-color: var(--gold);
+  color: #1a0900; transform: translateY(0);
+}
+.btn-login {
+  background: transparent; color: var(--gold);
+  border-color: rgba(246,233,200,.5);
+}
+.btn-login:hover {
+  border-color: var(--gold); color: var(--gold);
+  box-shadow: 0 0 16px rgba(255,195,0,.2); transform: translateY(-2px);
+}
+.btn-login:active {
+  background: var(--gold); border-color: var(--gold);
+  color: #1a0900; transform: translateY(0);
+}
+ 
+/* Scroll */
+.scroll-indicator {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  font-family: 'Cinzel', serif; font-size: .58rem; letter-spacing: .3em;
+  color: rgba(246,233,200,.42);
+  animation: fadeIn 1.5s 1.5s both;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.scroll-arrow {
+  width: 14px; height: 14px;
+  border-right: 1.5px solid rgba(246,233,200,.38);
+  border-bottom: 1.5px solid rgba(246,233,200,.38);
+  transform: rotate(45deg);
+  animation: bounceArr 1.5s ease-in-out infinite;
+}
+@keyframes bounceArr {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50%     { transform: rotate(45deg) translateY(5px); }
+}
+ 
+.ripple {
+  position: fixed; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(255,195,0,.25), transparent);
+  width: 10px; height: 10px; transform: translate(-50%,-50%) scale(0);
+  animation: rippleOut .6s ease-out forwards; z-index: 9998;
+}
+@keyframes rippleOut { to { transform: translate(-50%,-50%) scale(30); opacity: 0; } }
+ 
+/* ═══════════════════════════════════════════════════
+   ABOUT — full width
+═══════════════════════════════════════════════════ */
+#about {
+  position: relative; z-index: 5;
+  width: 100%;
+  background:
+    linear-gradient(to bottom, rgba(9,24,33,.9) 0%, rgba(5,14,21,.97) 100%),
+    url('../img/landingpage.png') center/cover no-repeat fixed;
+  padding: 88px 8% 80px;
+}
+ 
+.section-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 4.2vw, 3.8rem);
+  color: var(--gold); text-align: center;
+  letter-spacing: .08em; margin-bottom: 52px;
+  text-shadow: 0 0 28px rgba(255,195,0,.44);
+  line-height: 1.15;
+}
+.section-title::after {
+  content: ''; display: block; width: 130px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 16px auto 0;
+}
+ 
+.about-card {
+  max-width: 1500px; margin: 0 auto 100px;
+  background: rgba(9,24,33,.50);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(246,233,200,.18);
+  border-radius: 20px;
+  padding: 60px 70px;
+  display: flex; align-items: flex-start; gap: 60px;
+  animation: fadeUp .9s .15s both;
+}
+ 
+.about-crest {
+  width: 180px; height: 180px; flex-shrink: 0;
+  border-radius: 12px; overflow: hidden;
+}
+.about-crest img {
+  width: 100%; height: 100%;
+  object-fit: contain; background: transparent; padding: 4px;
+}
+ 
+.about-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem; line-height: 2.2;
+  color: rgba(246,233,200,.92); font-weight: 300;
+}
+ 
+.houses-title {
+  font-family: 'HarryP', 'Cinzel Decorative', serif;
+  font-weight: 600;
+  font-size: clamp(3rem, 3.6vw, 3rem);
+  color: var(--gold); text-align: center; letter-spacing: .1em;
+  margin-bottom: 40px;
+  text-shadow: 0 0 22px rgba(255,195,0,.36);
+}
+ 
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1500px; height: 450px; margin: 0 auto;
+}
+ 
+.house-card {
+  background: rgba(9,24,33,.60);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(246,233,200,.18);
+  border-radius: 18px;
+  padding: 20px 10px 20px;
+  text-align: center;
+  animation: fadeUp .8s both;
+  transition: transform .35s, box-shadow .35s, border-color .35s;
+}
+.house-card:nth-child(1) { animation-delay: .08s; }
+.house-card:nth-child(2) { animation-delay: .18s; }
+.house-card:nth-child(3) { animation-delay: .28s; }
+.house-card:nth-child(4) { animation-delay: .38s; }
+.house-card:hover { transform: translateY(-8px); }
+.house-card.gryffindor:hover { border-color: var(--gryffindor); box-shadow: 0 20px 48px rgba(190,73,22,.4); }
+.house-card.slytherin:hover  { border-color: var(--slytherin);  box-shadow: 0 20px 48px rgba(55,153,56,.4); }
+.house-card.ravenclaw:hover  { border-color: var(--ravenclaw);  box-shadow: 0 20px 48px rgba(76,94,217,.4); }
+.house-card.hufflepuff:hover { border-color: var(--gold);       box-shadow: 0 20px 48px rgba(255,195,0,.4); }
+ 
+.house-logo {
+  width: 100%; max-width: 190px; height: 135px;
+  object-fit: cover; object-position: center;
+  border-radius: 10px; display: block; margin: 0 auto 20px;
+  background: rgba(30,15,5,.5); transition: box-shadow .3s;
+}
+.house-card:hover .house-logo { box-shadow: 0 0 22px rgba(255,195,0,.4); }
+ 
+.house-name {
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  font-size: 2rem; font-weight: 400; letter-spacing: .05em;
+}
+.house-name::after {
+  content: ''; display: block; width: 72%; height: 1.5px;
+  margin: 9px auto 13px; opacity: .65; background: currentColor;
+}
+.house-card.gryffindor .house-name { color: var(--gryffindor); }
+.house-card.slytherin  .house-name { color: var(--slytherin); }
+.house-card.ravenclaw  .house-name { color: var(--ravenclaw); }
+.house-card.hufflepuff .house-name { color: var(--gold); }
+ 
+.house-traits {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.7rem; line-height: 2;
+  color: rgba(246,233,200,.72); font-weight: 300;
+}
+ 
+footer {
+  position: relative; z-index: 5;
+  background: rgba(5,14,21,.98);
+  border-top: 1px solid rgba(246,233,200,.1);
+  padding: 20px 48px; text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: .74rem; letter-spacing: .06em;
+  color: rgba(246,233,200,.42);
+}
+ 
+/* ══ RESPONSIVE ══ */
+@media (max-width: 1100px) {
+  .page-hero { padding: 20px 24px; }
+  #about { padding: 72px 6% 64px; }
+}
+@media (max-width: 960px) {
+  .houses-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .page-hero { padding: 14px 16px; }
+  #hero { border-radius: 12px; }
+  #navbar { padding: 0 16px; }
+  .nav-links { gap: 22px; margin-top: 24px; }
+  .nav-wordmark { font-size: 1.55rem; }
+  .hero-content { padding: 0 5% 60px; }
+  .hero-title { font-size: clamp(2.8rem, 9vw, 5rem); }
+  .btn { padding: 11px 26px; font-size: .72rem; }
+  .about-card { flex-direction: column; text-align: center; padding: 32px 24px; gap: 28px; }
+  .about-crest { width: 100px; height: 100px; }
+  .about-text { font-size: 1rem; }
+  #about { padding: 56px 5% 52px; }
+}
+@media (max-width: 520px) {
+  .page-hero { padding: 10px; }
+  #hero { border-radius: 8px; }
+  .nav-wordmark { font-size: 1.25rem; }
+  .hero-title { font-size: clamp(2.4rem, 11vw, 3.5rem); }
+  .houses-grid { grid-template-columns: repeat(2,1fr); gap: 12px; }
+  .section-title { font-size: 1.8rem; }
+}

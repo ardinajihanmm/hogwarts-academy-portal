@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap');
+ 
+@font-face {
+  font-family:'HarryP';
+  src:url('../fonts/HarryP.ttf') format('truetype');
+  font-weight:normal;font-style:normal;
+}
+@font-face {
+  font-family:'Cinzel Decorative';
+  src:url('../fonts/Cinzel Decorative.ttf') format('truetype');
+  font-weight:normal;font-style:normal;
+}
+@font-face {
+  font-family:'CormorantGaramond';
+  src:url('../fonts/CormorantGaramond.ttf') format('truetype');
+  font-weight:normal;font-style:normal;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+ 
+:root {
+  --cream:       #F6E9C8;
+  --gold:        #FFC300;
+  --gold-hover:  #FBD747;
+  --gold-dark:   #c9960c;
+  --tan:         #CAB58C;
+  --navy:        #091821;
+  /* Parchment card palette sesuai Figma */
+  --parch-bg:    #e8d9b0;
+  --parch-light: #f0e4c0;
+  --brown:       #8B5E0A;  /* label & title color */
+  --brown-dark:  #5c3d06;
+  --brown-light: #a07020;
+  --border-warm: rgba(139,94,10,.22);
+  /* Validation */
+  --valid:       #379938;
+  --error:       #BE4916;
+}
+ 
+html,body{width:100%;min-height:100%;overflow-x:hidden;}
+ 
+body {
+  font-family:'CormorantGaramond',serif;
+  background:
+    linear-gradient(to bottom,rgba(9,24,33,.28),rgba(9,24,33,.62)),
+    url('../img/landingpage.png') center/cover no-repeat fixed;
+  min-height:100vh;display:flex;flex-direction:column;
+  cursor:none;
+}
+ 
+/* ─── CURSOR ─── */
+.cursor-dot,.cursor-ring{
+  position:fixed;pointer-events:none;z-index:9999;
+  border-radius:50%;transform:translate(-50%,-50%);
+}
+.cursor-dot {width:6px;height:6px;background:var(--gold);}
+.cursor-ring{
+  width:28px;height:28px;
+  border:1.5px solid rgba(255,195,0,.5);
+  transition:width .15s,height .15s,border-color .15s;
+}
+ 
+/* ─── PARTICLES ─── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,195,0,.7),transparent);
+  animation:floatP linear infinite;opacity:0;
+}
+@keyframes floatP{
+  0%  {opacity:0;transform:translateY(0) scale(1)}
+  10% {opacity:.6}90%{opacity:.2}
+  100%{opacity:0;transform:translateY(-100vh) scale(.2)}
+}
+ 
+/* ─── NAVBAR ─── */
+nav{
+  position:relative;z-index:10;
+  display:flex;align-items:center;gap:14px;
+  padding:18px 36px;
+  animation:slideD .7s both;
+}
+@keyframes slideD{
+  from{opacity:0;transform:translateY(-16px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+.nav-crest{
+  width:48px;height:48px;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 22px rgba(255,195,0,.45);
+  animation:glow 3s ease-in-out infinite;
+}
+.nav-crest img{width:100%;height:100%;object-fit:cover;}
+@keyframes glow{
+  0%,100%{box-shadow:0 0 18px rgba(255,195,0,.35)}
+  50%    {box-shadow:0 0 32px rgba(255,195,0,.65)}
+}
+/* !! Harry P untuk navbar name */
+.nav-name{
+  font-family:'HarryP','CormorantGaramond',serif;
+  font-weight:400px;font-size:2.0rem;
+  letter-spacing:.06em;color:var(--cream);
+  text-shadow:0 0 16px rgba(246,233,200,.28);
+}
+ 
+/* ─── MAIN ─── */
+main{
+  position:relative;z-index:5;
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:16px 16px 36px;
+}
+ 
+/* ─── CARD — parchment sesuai Figma ─── */
+.card{
+  width:700px;
+  height:680px;
+  background:rgba(246,233,200,.74);
+  border:1px solid rgba(160,120,55,.28);
+  border-radius:20px;
+  padding:42px 46px 38px;
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.65),
+    inset 0 1px 0 rgba(255,255,255,.35),
+    inset 0 -1px 0 rgba(100,70,10,.15);
+  animation:cardIn .9s .2s both;
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(38px) scale(.97)}
+  to  {opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-7px)} 30%{transform:translateX(7px)}
+  45%{transform:translateX(-5px)} 60%{transform:translateX(5px)}
+  75%{transform:translateX(-3px)} 90%{transform:translateX(3px)}
+}
+.shake{animation:shake .45s ease both;}
+ 
+/* Card crest */
+.card-crest{
+  width:66px;height:66px;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 22px rgba(255,195,0,.45);
+  animation:glow 3s ease-in-out infinite;margin:0 auto 14px;
+}
+.card-crest img{width:100%;height:100%;object-fit:contain;padding:3px;}
+ 
+/* Card title — Cinzel, warm brown-gold sesuai Figma */
+.card-title{
+  font-family:'Cinzel Decorative',serif;font-weight:1500;
+  font-size:2.2rem;letter-spacing:.2em;
+  color:var(--brown);text-align:center;margin-bottom:8px;
+}
+.divider{border:none;border-top:1px solid var(--border-warm);margin:10px 0 14px;}
+.card-desc{
+  font-family:'CormorantGaramond',serif;
+  font-size:1.7rem;line-height:1.75;
+  color:rgba(60,40,8,.72);text-align:center;margin-bottom:24px;
+}
+ 
+/* ─── FORM FIELDS ─── */
+.field{margin-bottom:17px;}
+label{
+  display:block;font-family:'CormorantGaramond',serif;
+  font-size:1.6rem;letter-spacing:.05em;
+  color:rgba(60,40,8,.85);margin-bottom:6px;
+}
+input{
+  width:100%;padding:14px 14px;
+  background:rgba(246,233,200,.55);
+  border:1px solid var(--border-warm);
+  border-radius:7px;
+  color:rgba(30,18,4,.88);
+  font-family:'Poppins',sans-serif;font-size:1rem;
+  outline:none;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+}
+input::placeholder{color:rgba(80,55,15,.38);}
+input:focus{
+  border-color:var(--brown);
+  background:rgba(246,233,200,.82);
+  box-shadow:0 0 0 3px rgba(139,94,10,.14);
+}
+input.ok{
+  border-color:var(--valid);
+  background:rgba(55,153,56,.07);
+  box-shadow:0 0 0 3px rgba(55,153,56,.12);
+}
+input.err{
+  border-color:var(--error);
+  background:rgba(190,73,22,.07);
+  box-shadow:0 0 0 3px rgba(190,73,22,.12);
+}
+ 
+.input-wrap{position:relative;}
+.toggle-pw{
+  position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  color:rgba(80,55,15,.4);font-size:.95rem;transition:color .2s;
+}
+.toggle-pw:hover{color:var(--brown);}
+ 
+/* Remember / Forgot row */
+.row-options{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.check-label{
+  display:flex;align-items:center;gap:7px;
+  font-family:'Poppins',sans-serif;
+  font-size:.76rem;color:rgba(80,55,15,.68);cursor:pointer;
+}
+.check-label input[type="checkbox"]{
+  width:14px;height:14px;accent-color:var(--brown);cursor:pointer;
+}
+.forgot-link{
+  font-family:'Poppins',sans-serif;
+  font-size:.76rem;color:var(--brown);
+  text-decoration:none;transition:color .2s;
+}
+.forgot-link:hover{color:var(--gold-dark);}
+ 
+/* ─── SUBMIT BUTTON — sesuai Figma ─── */
+.btn-submit{
+  width:100%;padding:13px;
+  /* Warm golden-brown gradient sesuai Figma */
+  background:#AC6412;
+  color:#091821;
+  color:#fff;
+  font-family:'CormorantGaramond',serif;font-weight:700;
+  font-size:.82rem;letter-spacing:.2em;
+  border:none;border-radius:50px;cursor:pointer;
+  box-shadow:0 4px 18px rgba(180,120,8,.45);
+  transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.btn-submit::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(255,255,255,.18);
+  transform:translateX(-100%);transition:transform .4s;
+}
+.btn-submit:hover::before{transform:translateX(0);}
+.btn-submit:hover{
+  background:linear-gradient(135deg,#e0a812,#b58209);
+  transform:translateY(-2px);
+  box-shadow:0 8px 26px rgba(180,120,8,.6);
+}
+.btn-submit:active{
+    background:#F6E9C8;
+  color:#091821;
+}
+.btn-submit:disabled{opacity:.7;cursor:not-allowed;transform:none;}
+ 
+.card-footer{
+  text-align:center;margin-top:16px;
+  font-family:'Poppins',sans-serif;
+  font-size:.78rem;color:rgba(80,55,15,.58);
+}
+.card-footer a{
+  color:var(--brown);font-weight:700;
+  text-decoration:none;transition:color .2s;
+}
+.card-footer a:hover{color:var(--gold-dark);}
+ 
+/* ─── VALIDATION ─── */
+.field-wrap{position:relative;}
+.field-status{
+  position:absolute;right:-20px;top:50%;
+  transform:translateY(-50%);
+  font-size:.78rem;font-weight:700;pointer-events:none;
+}
+.field-status.valid  {color:var(--valid);}
+.field-status.invalid{color:var(--error);}
+ 
+.hint{
+  font-family:'Poppins',sans-serif;
+  font-size:.68rem;color:var(--error);
+  margin-top:4px;display:none;
+  animation:hintIn .2s ease both;
+}
+@keyframes hintIn{
+  from{opacity:0;transform:translateY(-4px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-7px)} 30%{transform:translateX(7px)}
+  45%{transform:translateX(-5px)} 60%{transform:translateX(5px)}
+  75%{transform:translateX(-3px)} 90%{transform:translateX(3px)}
+}
+ 
+.btn-spinner{
+  display:inline-block;width:13px;height:13px;
+  border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;
+  vertical-align:middle;margin-right:6px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+ 
+@media(max-width:520px){
+  .card{padding:28px 20px;}
+  nav{padding:14px 20px;}
+}
