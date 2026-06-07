@@ -27,7 +27,7 @@
   });
 })();
  
-// ── Magic Ripple on click ──
+
 document.addEventListener('click', e => {
   const r = document.createElement('div');
   r.className = 'ripple';
@@ -37,7 +37,7 @@ document.addEventListener('click', e => {
   setTimeout(() => r.remove(), 700);
 });
  
-// ── Generate Floating Particles ──
+
 (function initParticles() {
   const container = document.getElementById('particles');
   if (!container) return;

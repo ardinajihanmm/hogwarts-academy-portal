@@ -193,7 +193,7 @@ input.err,select.err{
 }
 #strengthLabel{
   font-family:'Poppins',sans-serif;
-  font-size:.68rem;font-weight:600;
+  font-size:1.2rem;font-weight:600;
   margin-top:3px;letter-spacing:.06em;
   display:block;min-height:1em;transition:color .3s;
 }
@@ -257,7 +257,7 @@ input.err,select.err{
  
 .hint{
   font-family:'Poppins',sans-serif;
-  font-size:.68rem;color:var(--error);
+  font-size:1.2rem;color:var(--error);
   margin-top:4px;display:none;
   animation:hintIn .2s ease both;
 }

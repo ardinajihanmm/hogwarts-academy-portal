@@ -334,25 +334,25 @@ body {
   background: rgba(9,24,33,.50);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(246,233,200,.18);
-  border-radius: 20px;
-  padding: 60px 70px;
-  display: flex; align-items: flex-start; gap: 60px;
+  border-radius: 30px;
+  padding: 20px 30px;
+  display: flex; align-items: center; gap: 60px;
   animation: fadeUp .9s .15s both;
 }
  
 .about-crest {
-  width: 180px; height: 180px; flex-shrink: 0;
-  border-radius: 12px; overflow: hidden;
+  width: 290px; height: 290px; flex-shrink: 0;
+  border-radius: 30px; overflow: hidden;
 }
 .about-crest img {
-  width: 100%; height: 100%;
+  width: 290px; height: 290px; 
   object-fit: contain; background: transparent; padding: 4px;
 }
  
 .about-text {
   font-family: 'Poppins', sans-serif;
   font-size: 2rem; line-height: 2.2;
-  color: rgba(246,233,200,.92); font-weight: 300;
+  color: rgba(246,233,200,.92); font-weight: 250;
 }
  
 .houses-title {
@@ -367,15 +367,15 @@ body {
 .houses-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  max-width: 1500px; height: 450px; margin: 0 auto;
+  gap:  75px;
+  max-width: 1700px; height: 450px; margin: 0 auto;
 }
  
 .house-card {
   background: rgba(9,24,33,.60);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(246,233,200,.18);
-  border-radius: 18px;
+  border-radius: 30px;
   padding: 20px 10px 20px;
   text-align: center;
   animation: fadeUp .8s both;
@@ -392,7 +392,7 @@ body {
 .house-card.hufflepuff:hover { border-color: var(--gold);       box-shadow: 0 20px 48px rgba(255,195,0,.4); }
  
 .house-logo {
-  width: 100%; max-width: 200px; height: 200px;
+  width: 100%; max-width: 210px; height: 210px;
   object-fit: contain; object-position: center;
   border-radius: 10px; display: block; margin: 0 auto 20px;
   background: transparent; transition: box-shadow .3s;
