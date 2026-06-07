@@ -24,7 +24,7 @@
   <div class="card" id="loginCard">
  
     <div class="card-crest">
-      <img src="../assets/img/logo.png" alt="Hogwarts Crest" />
+      <img src="../assets/img/logo2.png" alt="Hogwarts Crest" />
     </div>
  
     <h1 class="card-title">WELCOME BACK</h1>
@@ -43,7 +43,7 @@
       <p class="hint" id="usernameHint"></p>
     </div>
  
-    <!-- Password -->
+    
     <div class="field">
       <label for="password">Password</label>
       <div class="field-wrap">

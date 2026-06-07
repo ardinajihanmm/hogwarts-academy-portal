@@ -139,11 +139,10 @@ main{
  
 
 .card-crest{
-  width:66px;height:66px;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 22px rgba(255,195,0,.45);
-  animation:glow 3s ease-in-out infinite;margin:0 auto 14px;
+  width:140px;height:140px;border-radius:50%;overflow:hidden;
+  margin:0 auto 12px;
 }
-.card-crest img{width:100%;height:100%;object-fit:contain;padding:3px;}
+.card-crest img{width:100%;height:100%;object-fit:contain;padding:0px;}
  
 
 .card-title{

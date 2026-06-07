@@ -24,7 +24,7 @@
   <div class="card">
  
     <div class="card-crest">
-      <img src="../assets/img/logo.png" alt="Hogwarts Crest" />
+      <img src="../assets/img/logo2.png" alt="Hogwarts Crest" />
     </div>
  
     <h1 class="card-title">WIZARD REGISTRATION</h1>
