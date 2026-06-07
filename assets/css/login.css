@@ -25,14 +25,14 @@
   --gold-dark:   #c9960c;
   --tan:         #CAB58C;
   --navy:        #091821;
-  /* Parchment card palette sesuai Figma */
+
   --parch-bg:    #e8d9b0;
   --parch-light: #f0e4c0;
-  --brown:       #8B5E0A;  /* label & title color */
+  --brown:       #8B5E0A;  
   --brown-dark:  #5c3d06;
   --brown-light: #a07020;
   --border-warm: rgba(139,94,10,.22);
-  /* Validation */
+
   --valid:       #379938;
   --error:       #BE4916;
 }
@@ -60,7 +60,7 @@ body {
   transition:width .15s,height .15s,border-color .15s;
 }
  
-/* ─── PARTICLES ─── */
+
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .particle{
   position:absolute;border-radius:50%;
@@ -73,7 +73,7 @@ body {
   100%{opacity:0;transform:translateY(-100vh) scale(.2)}
 }
  
-/* ─── NAVBAR ─── */
+
 nav{
   position:relative;z-index:10;
   display:flex;align-items:center;gap:14px;
@@ -94,10 +94,10 @@ nav{
   0%,100%{box-shadow:0 0 18px rgba(255,195,0,.35)}
   50%    {box-shadow:0 0 32px rgba(255,195,0,.65)}
 }
-/* !! Harry P untuk navbar name */
+
 .nav-name{
-  font-family:'HarryP','CormorantGaramond',serif;
-  font-weight:400px;font-size:2.0rem;
+  font-family:'HarryP','Cinzel Decorative',serif;
+  font-weight:400px;font-size:1.8rem;
   letter-spacing:.06em;color:var(--cream);
   text-shadow:0 0 16px rgba(246,233,200,.28);
 }
@@ -105,14 +105,16 @@ nav{
 
 main{
   position:relative;z-index:5;
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:16px 16px 36px;
+  flex:1;display:flex;align-items:flex-start;justify-content:center;
+  padding-top:200px;
+  min-height:100vh;
 }
 
 
 .card{
   width:700px;
-  height:680px;
+  height:auto;
+  min-height:650px;
   background:rgba(246,233,200,.74);
   border:1px solid rgba(160,120,55,.28);
   border-radius:20px;
@@ -135,7 +137,7 @@ main{
 }
 .shake{animation:shake .45s ease both;}
  
-/* Card crest */
+
 .card-crest{
   width:66px;height:66px;border-radius:50%;overflow:hidden;
   box-shadow:0 0 22px rgba(255,195,0,.45);
@@ -143,25 +145,25 @@ main{
 }
 .card-crest img{width:100%;height:100%;object-fit:contain;padding:3px;}
  
-/* Card title — Cinzel, warm brown-gold sesuai Figma */
+
 .card-title{
-  font-family:'Cinzel Decorative',serif;font-weight:1500;
-  font-size:2.2rem;letter-spacing:.2em;
+  font-family:'Cinzel Decorative',serif;font-weight:1000;
+  font-size:2.1rem;letter-spacing:.2em;
   color:var(--brown);text-align:center;margin-bottom:8px;
 }
 .divider{border:none;border-top:1px solid var(--border-warm);margin:10px 0 14px;}
 .card-desc{
   font-family:'CormorantGaramond',serif;
   font-size:1.7rem;line-height:1.75;
-  color:rgba(60,40,8,.72);text-align:center;margin-bottom:24px;
+  color:#221A04;text-align:center;margin-bottom:20px;
 }
  
-/* ─── FORM FIELDS ─── */
+
 .field{margin-bottom:17px;}
 label{
   display:block;font-family:'CormorantGaramond',serif;
-  font-size:1.6rem;letter-spacing:.05em;
-  color:rgba(60,40,8,.85);margin-bottom:6px;
+  font-size:1.7rem;letter-spacing:.02em;
+  color:#221A04;margin-bottom:6px;
 }
 input{
   width:100%;padding:14px 14px;
@@ -169,7 +171,7 @@ input{
   border:1px solid var(--border-warm);
   border-radius:7px;
   color:rgba(30,18,4,.88);
-  font-family:'Poppins',sans-serif;font-size:1rem;
+  font-family:'Poppins',sans-serif;font-size:1.2rem;
   outline:none;
   transition:border-color .25s,background .25s,box-shadow .25s;
 }
@@ -198,35 +200,36 @@ input.err{
 }
 .toggle-pw:hover{color:var(--brown);}
  
-/* Remember / Forgot row */
+
 .row-options{
   display:flex;align-items:center;justify-content:space-between;
   margin-bottom:20px;
 }
 .check-label{
   display:flex;align-items:center;gap:7px;
-  font-family:'Poppins',sans-serif;
-  font-size:.76rem;color:rgba(80,55,15,.68);cursor:pointer;
+  font-family:'CormorantGaramond',serif;
+  font-size:1.5rem;color:#AC6412;cursor:pointer;
 }
 .check-label input[type="checkbox"]{
-  width:14px;height:14px;accent-color:var(--brown);cursor:pointer;
+  width:14px;height:14px;accent-color:#AC6412;cursor:pointer;
 }
 .forgot-link{
-  font-family:'Poppins',sans-serif;
-  font-size:.76rem;color:var(--brown);
+  font-family:'CormorantGaramond',serif;
+  font-size:1.5rem;color:#AC6412;
   text-decoration:none;transition:color .2s;
 }
 .forgot-link:hover{color:var(--gold-dark);}
- 
-/* ─── SUBMIT BUTTON — sesuai Figma ─── */
+
 .btn-submit{
-  width:100%;padding:13px;
-  /* Warm golden-brown gradient sesuai Figma */
+  width:350px; 
+  height: 65px;
+  display:block;
+  margin:20px auto 0;
   background:#AC6412;
   color:#091821;
-  color:#fff;
+  color:#003041;
   font-family:'CormorantGaramond',serif;font-weight:700;
-  font-size:.82rem;letter-spacing:.2em;
+  font-size:1.8rem;letter-spacing:.07em;
   border:none;border-radius:50px;cursor:pointer;
   box-shadow:0 4px 18px rgba(180,120,8,.45);
   transition:all .25s;
@@ -244,35 +247,38 @@ input.err{
   box-shadow:0 8px 26px rgba(180,120,8,.6);
 }
 .btn-submit:active{
-    background:#F6E9C8;
+  background:#F6E9C8;
   color:#091821;
 }
 .btn-submit:disabled{opacity:.7;cursor:not-allowed;transform:none;}
  
 .card-footer{
-  text-align:center;margin-top:16px;
-  font-family:'Poppins',sans-serif;
-  font-size:.78rem;color:rgba(80,55,15,.58);
+  text-align:center;margin-top:14px;
+  font-family:'CormorantGaramond',sans-serif;
+  font-size:1.7rem;color:#AC6412;;
 }
 .card-footer a{
   color:var(--brown);font-weight:700;
   text-decoration:none;transition:color .2s;
 }
 .card-footer a:hover{color:var(--gold-dark);}
- 
-/* ─── VALIDATION ─── */
+
+.card-footer a:active{
+  color:#221A04;
+}
+
 .field-wrap{position:relative;}
 .field-status{
   position:absolute;right:-20px;top:50%;
   transform:translateY(-50%);
-  font-size:.78rem;font-weight:700;pointer-events:none;
+  font-size:1.2rem;font-weight:700;pointer-events:none;
 }
 .field-status.valid  {color:var(--valid);}
 .field-status.invalid{color:var(--error);}
  
 .hint{
-  font-family:'Poppins',sans-serif;
-  font-size:.68rem;color:var(--error);
+  font-family:'CormorantGaramond',sans-serif;
+  font-size:1.2rem;color:var(--error);
   margin-top:4px;display:none;
   animation:hintIn .2s ease both;
 }
