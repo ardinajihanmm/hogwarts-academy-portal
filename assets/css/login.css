@@ -48,7 +48,7 @@ body {
   cursor:none;
 }
  
-/* ─── CURSOR ─── */
+
 .cursor-dot,.cursor-ring{
   position:fixed;pointer-events:none;z-index:9999;
   border-radius:50%;transform:translate(-50%,-50%);
@@ -102,14 +102,14 @@ nav{
   text-shadow:0 0 16px rgba(246,233,200,.28);
 }
  
-/* ─── MAIN ─── */
+
 main{
   position:relative;z-index:5;
   flex:1;display:flex;align-items:center;justify-content:center;
   padding:16px 16px 36px;
 }
- 
-/* ─── CARD — parchment sesuai Figma ─── */
+
+
 .card{
   width:700px;
   height:680px;
