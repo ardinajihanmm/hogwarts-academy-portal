@@ -38,13 +38,13 @@ function validatePassword(live = false) {
   setValid('password'); return true;
 }
  
-// Live
+
 getField('username').addEventListener('input', () => validateUsername(true));
 getField('password').addEventListener('input', () => validatePassword(true));
 getField('username').addEventListener('blur',  () => { if (getField('username').value) validateUsername(); });
 getField('password').addEventListener('blur',  () => { if (getField('password').value) validatePassword(); });
  
-// Toggle
+
 document.querySelectorAll('.toggle-pw').forEach(btn => {
   btn.addEventListener('click', () => {
     const inp = getField(btn.dataset.target);
@@ -53,7 +53,7 @@ document.querySelectorAll('.toggle-pw').forEach(btn => {
   });
 });
  
-// Submit
+
 function handleLogin() {
   const v1 = validateUsername();
   const v2 = validatePassword();
