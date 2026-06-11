@@ -174,3 +174,17 @@ function handleRegister() {
 }
  
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+
+if (cursorDot && cursorRing) {
+  document.addEventListener('mousemove', (e) => {
+
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+
+  });
+}

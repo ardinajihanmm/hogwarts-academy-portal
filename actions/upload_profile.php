@@ -55,6 +55,6 @@ if (!empty($_SESSION['photo_url']) && strpos($_SESSION['photo_url'], 'default') 
 $photoUrl = '../../assets/img/uploads/' . $filename;
 $_SESSION['photo_url'] = $photoUrl;
 
-// TODO: Update DB — $db->query("UPDATE users SET photo_url=? WHERE id=?", [$photoUrl, $_SESSION['user_id']]);
+
 
 echo json_encode(['success' => true, 'photo_url' => $photoUrl]);

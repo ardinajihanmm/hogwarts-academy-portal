@@ -15,6 +15,7 @@
     container.appendChild(s);
   }
 })();
+
  
 (function initParallax() {
   const heroBg = document.querySelector('.hero-bg');
@@ -50,3 +51,19 @@
  
   targets.forEach(el => observer.observe(el));
 })();
+const cursorDot = document.getElementById('cursorDot');
+const cursorRing = document.getElementById('cursorRing');
+
+if (cursorDot && cursorRing) {
+
+  document.addEventListener('mousemove', (e) => {
+
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+
+  });
+
+}

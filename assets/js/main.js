@@ -1,57 +1,49 @@
-(function initCursor() {
-  const dot  = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  if (!dot || !ring) return;
- 
-  let mx = 0, my = 0, rx = 0, ry = 0;
- 
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
- 
-  function animCursor() {
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(animCursor);
+document.addEventListener('DOMContentLoaded', function(){
+  
+  const hamburger = document.getElementById('hamburgerBtn');
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('sidebarOverlay');
+  if(hamburger && sidebar){
+    hamburger.addEventListener('click', ()=>{ sidebar.classList.toggle('open'); overlay?.classList.toggle('active'); });
+    overlay?.addEventListener('click', ()=>{ sidebar.classList.remove('open'); overlay.classList.remove('active'); });
   }
-  animCursor();
+
  
-  document.querySelectorAll('a, button, .btn, .house-card, label').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '46px'; ring.style.height = '46px';
-      ring.style.borderColor = 'rgba(255,195,0,0.85)';
+  const sidebarPhotoInput = document.getElementById('sidebarPhotoInput');
+  if(sidebarPhotoInput){
+    sidebarPhotoInput.addEventListener('change', function(){
+      const f=this.files[0]; if(!f) return;
+      if(f.size>5*1024*1024){ showToast(' File max 5MB','error'); return; }
+      const r=new FileReader();
+      r.onload=e=>{ const img=document.getElementById('sidebarPhoto'); if(img) img.src=e.target.result; };
+      r.readAsDataURL(f);
+    
+      const fd=new FormData(); fd.append('photo',f);
+      fetch('../actions/update_profile.php',{method:'POST',body:fd})
+        .then(r=>r.text()).catch(()=>{});
     });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '30px'; ring.style.height = '30px';
-      ring.style.borderColor = 'rgba(255,195,0,0.5)';
+  }
+
+
+  document.addEventListener('keydown', e=>{
+    if(e.key==='Escape') document.querySelectorAll('.modal-backdrop').forEach(m=>m.style.display='none');
+  });
+
+  // Animate stagger on load
+  document.querySelectorAll('.stagger').forEach(container=>{
+    [...container.children].forEach((child,i)=>{
+      child.style.opacity='0';
+      child.style.animation=`fadeInUp .45s ease ${i*0.07}s forwards`;
     });
   });
-})();
- 
-
-document.addEventListener('click', e => {
-  const r = document.createElement('div');
-  r.className = 'ripple';
-  r.style.left = e.clientX + 'px';
-  r.style.top  = e.clientY + 'px';
-  document.body.appendChild(r);
-  setTimeout(() => r.remove(), 700);
 });
- 
 
-(function initParticles() {
-  const container = document.getElementById('particles');
-  if (!container) return;
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const sz = Math.random() * 3.5 + 1;
-    p.style.cssText = `
-      width:${sz}px; height:${sz}px;
-      left:${Math.random() * 100}%;
-      bottom:-5%;
-      animation-duration:${Math.random() * 8 + 5}s;
-      animation-delay:${Math.random() * 12}s;
-    `;
-    container.appendChild(p);
-  }
-})();
+function showToast(message, type='success'){
+  let container=document.getElementById('toastContainer');
+  if(!container) return;
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${type==='success'?'<polyline points="20 6 9 17 4 12"/>':'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>'}</svg>${message}`;
+  container.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(20px)'; t.style.transition='all .3s'; setTimeout(()=>t.remove(),300); },3200);
+}
