@@ -1,3 +1,4 @@
+// ── VALIDATION RULES ────────────────────────────────────────
 const RULES = {
   username: {
     validate: v => v.trim().length >= 3 && /^[a-zA-Z0-9_]+$/.test(v.trim()),
@@ -28,52 +29,48 @@ const RULES = {
       mismatch: '⚠ Mantra tidak cocok. Coba lagi, wizard!'
     }
   },
-  role: {
+  house: {
     validate: v => v !== '',
-    messages: { empty: '⚠ Pilih rumah / peran kamu terlebih dahulu.' }
+    messages: { empty: '⚠ Pilih rumah kamu terlebih dahulu.' }
   }
 };
- 
-function getField(id)   { return document.getElementById(id); }
-function getHint(id)    { return document.getElementById(id + 'Hint'); }
-function getStatus(id)  { return document.getElementById(id + 'Status'); }
- 
+
+// ── FIELD HELPERS ───────────────────────────────────────────
+function getField(id)  { return document.getElementById(id); }
+function getHint(id)   { return document.getElementById(id + 'Hint'); }
+function getStatus(id) { return document.getElementById(id + 'Status'); }
+
 function setValid(id) {
-  const el = getField(id);
-  const hint = getHint(id);
-  const status = getStatus(id);
+  const el = getField(id), hint = getHint(id), status = getStatus(id);
   el.classList.remove('err'); el.classList.add('ok');
   if (hint)   { hint.style.display = 'none'; }
   if (status) { status.textContent = '✓'; status.className = 'field-status valid'; }
 }
- 
+
 function setError(id, msg) {
-  const el = getField(id);
-  const hint = getHint(id);
-  const status = getStatus(id);
+  const el = getField(id), hint = getHint(id), status = getStatus(id);
   el.classList.remove('ok'); el.classList.add('err');
   if (hint)   { hint.textContent = msg; hint.style.display = 'block'; }
   if (status) { status.textContent = '✗'; status.className = 'field-status invalid'; }
 }
- 
+
 function clearField(id) {
-  const el = getField(id);
-  const hint = getHint(id);
-  const status = getStatus(id);
+  const el = getField(id), hint = getHint(id), status = getStatus(id);
   el.classList.remove('ok', 'err');
   if (hint)   { hint.style.display = 'none'; }
   if (status) { status.textContent = ''; status.className = 'field-status'; }
 }
- 
+
+// ── VALIDATORS ──────────────────────────────────────────────
 function validateUsername(live = false) {
   const v = getField('username').value;
   if (!v && live) { clearField('username'); return true; }
-  if (!v)         { setError('username', RULES.username.messages.empty);   return false; }
-  if (v.trim().length < 3) { setError('username', RULES.username.messages.short);   return false; }
+  if (!v)                              { setError('username', RULES.username.messages.empty);   return false; }
+  if (v.trim().length < 3)             { setError('username', RULES.username.messages.short);   return false; }
   if (!/^[a-zA-Z0-9_]+$/.test(v.trim())) { setError('username', RULES.username.messages.invalid); return false; }
   setValid('username'); return true;
 }
- 
+
 function validateEmail(live = false) {
   const v = getField('email').value;
   if (!v && live) { clearField('email'); return true; }
@@ -81,7 +78,7 @@ function validateEmail(live = false) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())) { setError('email', RULES.email.messages.invalid); return false; }
   setValid('email'); return true;
 }
- 
+
 function validatePassword(live = false) {
   const v = getField('password').value;
   if (!v && live) { clearField('password'); updateStrength(''); return true; }
@@ -91,61 +88,63 @@ function validatePassword(live = false) {
   if (getField('confirm').value) validateConfirm(true);
   return true;
 }
- 
+
 function validateConfirm(live = false) {
-  const v   = getField('confirm').value;
-  const ref = getField('password').value;
+  const v = getField('confirm').value, ref = getField('password').value;
   if (!v && live) { clearField('confirm'); return true; }
-  if (!v)         { setError('confirm', RULES.confirm.messages.empty);    return false; }
-  if (v !== ref)  { setError('confirm', RULES.confirm.messages.mismatch); return false; }
+  if (!v)        { setError('confirm', RULES.confirm.messages.empty);    return false; }
+  if (v !== ref) { setError('confirm', RULES.confirm.messages.mismatch); return false; }
   setValid('confirm'); return true;
 }
- 
-function validateRole(live = false) {
-  const v = getField('role').value;
-  if (!v && live) { clearField('role'); return true; }
-  if (!v)         { setError('role', RULES.role.messages.empty); return false; }
-  setValid('role'); return true;
+
+function validateHouse(live = false) {
+  const v = getField('house').value;   // ✅ 'house' bukan 'role'
+  if (!v && live) { clearField('house'); return true; }
+  if (!v)         { setError('house', RULES.house.messages.empty); return false; }
+  setValid('house'); return true;
 }
- 
+
+// ── STRENGTH BAR ────────────────────────────────────────────
 function updateStrength(v) {
   let score = 0;
   if (v.length >= 8)          score++;
   if (/[A-Z]/.test(v))        score++;
   if (/[0-9]/.test(v))        score++;
   if (/[^A-Za-z0-9]/.test(v)) score++;
- 
+
   const labels = ['', 'Lemah', 'Cukup', 'Kuat', 'Sangat Kuat'];
   const colors = ['', '#ff4444', '#ff8800', '#ffc300', '#44ff88'];
- 
+
   for (let i = 1; i <= 4; i++) {
     const seg = document.getElementById('s' + i);
+    if (!seg) continue;
     seg.style.background = i <= score ? colors[score] : 'rgba(246,233,200,0.15)';
     seg.style.boxShadow  = i <= score ? `0 0 6px ${colors[score]}55` : 'none';
   }
- 
+
   const label = document.getElementById('strengthLabel');
   if (label) {
     label.textContent = v ? labels[score] : '';
     label.style.color = colors[score] || 'transparent';
   }
 }
- 
-getField('username').addEventListener('input',  () => validateUsername(true));
-getField('email').addEventListener('input',     () => validateEmail(true));
-getField('password').addEventListener('input',  function() {
+
+// ── EVENT LISTENERS ─────────────────────────────────────────
+getField('username').addEventListener('input', () => validateUsername(true));
+getField('email').addEventListener('input',    () => validateEmail(true));
+getField('password').addEventListener('input', function () {
   updateStrength(this.value);
   if (this.value) validatePassword(true);
   else clearField('password');
 });
-getField('confirm').addEventListener('input',   () => validateConfirm(true));
-getField('role').addEventListener('change',     () => validateRole(true));
- 
+getField('confirm').addEventListener('input', () => validateConfirm(true));
+getField('house').addEventListener('change',  () => validateHouse(true));   // ✅ 'house'
+
 getField('username').addEventListener('blur', () => { if (getField('username').value) validateUsername(); });
 getField('email').addEventListener('blur',    () => { if (getField('email').value)    validateEmail(); });
 getField('password').addEventListener('blur', () => { if (getField('password').value) validatePassword(); });
 getField('confirm').addEventListener('blur',  () => { if (getField('confirm').value)  validateConfirm(); });
- 
+
 document.querySelectorAll('.toggle-pw').forEach(btn => {
   btn.addEventListener('click', () => {
     const inp = getField(btn.dataset.target);
@@ -153,46 +152,98 @@ document.querySelectorAll('.toggle-pw').forEach(btn => {
     btn.textContent = inp.type === 'password' ? '👁' : '✉';
   });
 });
- 
+
+// ── REGISTER HANDLER ────────────────────────────────────────
 function handleRegister() {
-    const username = document.getElementById('username').value.trim();
-    const email    = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-    const confirm  = document.getElementById('confirm').value;
-    const house    = document.getElementById('house').value; // ✅ bukan 'role'
+  const v1 = validateUsername();
+  const v2 = validateEmail();
+  const v3 = validatePassword();
+  const v4 = validateConfirm();
+  const v5 = validateHouse();   // ✅ bukan validateRole
 
-    const data = new FormData();
-    data.append('username',         username);
-    data.append('email',            email);
-    data.append('password',         password);
-    data.append('confirm_password', confirm);
-    data.append('house',            house); // ✅ key harus 'house'
+  if (!v1 || !v2 || !v3 || !v4 || !v5) {
+    const errEl = document.querySelector('input.err, select.err');
+    if (errEl) {
+      errEl.classList.add('shake');
+      setTimeout(() => errEl.classList.remove('shake'), 500);
+      errEl.focus();
+    }
+    return;
+  }
 
-    fetch('../actions/register.php', { method: 'POST', body: data })
-        .then(r => r.json())
-        .then(res => {
-            if (res.success) {
-                alert(res.message);
-                window.location.href = 'login.php';
-            } else {
-                alert(res.message);
-            }
-        })
-        .catch(() => alert('Terjadi kesalahan jaringan.'));
+  const btn = getField('registerBtn');
+  btn.innerHTML = '<span class="btn-spinner"></span> Sending acceptance letter…';
+  btn.disabled  = true;
+
+  const data = new FormData();
+  data.append('username',         getField('username').value.trim());
+  data.append('email',            getField('email').value.trim());
+  data.append('password',         getField('password').value);
+  data.append('confirm_password', getField('confirm').value);
+  data.append('house',            getField('house').value);   // ✅ kirim 'house'
+
+  fetch('../actions/register.php', { method: 'POST', body: data })
+    .then(r => r.json())
+    .then(res => {
+      if (res.success) {
+        btn.innerHTML = '✓ Acceptance letter sent!';
+        setTimeout(() => { window.location.href = 'login.php'; }, 1200);
+      } else {
+        btn.innerHTML = 'REGISTER NOW!';
+        btn.disabled  = false;
+        alert(res.message);
+        const errEl = document.querySelector('input.err, select.err');
+        if (errEl) { errEl.classList.add('shake'); setTimeout(() => errEl.classList.remove('shake'), 500); errEl.focus(); }
+      }
+    })
+    .catch(() => {
+      btn.innerHTML = 'REGISTER NOW!';
+      btn.disabled  = false;
+      alert('Terjadi kesalahan jaringan. Coba lagi.');
+    });
 }
- 
+
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
-const cursorDot = document.getElementById('cursorDot');
-const cursorRing = document.getElementById('cursorRing');
 
-if (cursorDot && cursorRing) {
-  document.addEventListener('mousemove', (e) => {
+// ── CUSTOM CURSOR ────────────────────────────────────────────
+// Dibungkus DOMContentLoaded agar elemen pasti sudah ada di DOM
+document.addEventListener('DOMContentLoaded', () => {
+  const cursorDot  = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
+  if (!cursorDot || !cursorRing) return;
 
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
+  let mouseX = 0, mouseY = 0;
+  let ringX   = 0, ringY  = 0;
 
-    cursorRing.style.left = e.clientX + 'px';
-    cursorRing.style.top = e.clientY + 'px';
-
+  // Dot: langsung mengikuti mouse
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top  = mouseY + 'px';
   });
-}
+
+  // Ring: smooth lag via rAF
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Efek membesar saat hover elemen interaktif
+  document.querySelectorAll('a, button, input, select').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorRing.style.width       = '44px';
+      cursorRing.style.height      = '44px';
+      cursorRing.style.borderColor = 'rgba(255,195,0,0.9)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorRing.style.width       = '28px';
+      cursorRing.style.height      = '28px';
+      cursorRing.style.borderColor = 'rgba(255,195,0,0.5)';
+    });
+  });
+});
