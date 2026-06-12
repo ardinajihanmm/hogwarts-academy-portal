@@ -3,7 +3,7 @@
 define('DB_HOST',    'localhost');
 define('DB_NAME',    'hogwarts_academy');
 define('DB_USER',    'root');
-define('DB_PASS',    '');          // Laragon default kosong
+define('DB_PASS',    '12345678');          // Laragon default kosong
 define('DB_CHARSET', 'utf8mb4');
 
 function getDB(): PDO {

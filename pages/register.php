@@ -38,7 +38,7 @@
     <div class="field">
       <label for="username">Username</label>
       <div class="field-wrap">
-        <input type="text" id="username" placeholder="e.g. HarryPotter7" autocomplete="off" />
+        <input type="text" id="username" name="username" placeholder="e.g. HarryPotter7" autocomplete="off" />
         <span class="field-status" id="usernameStatus"></span>
       </div>
       <p class="hint" id="usernameHint"></p>
@@ -47,7 +47,7 @@
     <div class="field">
       <label for="email">Email</label>
       <div class="field-wrap">
-        <input type="email" id="email" placeholder="wizard@hogwarts.edu" autocomplete="off" />
+        <input type="email" id="email" name="email" placeholder="wizard@hogwarts.edu" autocomplete="off" />
         <span class="field-status" id="emailStatus"></span>
       </div>
       <p class="hint" id="emailHint"></p>
@@ -57,7 +57,7 @@
       <label for="password">Password</label>
       <div class="field-wrap">
         <div class="input-wrap">
-          <input type="password" id="password" placeholder="Choose a strong spell..." />
+          <input type="password" id="password" name="password" placeholder="Choose a strong spell..." />
           <button type="button" class="toggle-pw" data-target="password">👁</button>
         </div>
         <span class="field-status" id="passwordStatus"></span>
@@ -76,7 +76,7 @@
       <label for="confirm">Confirm Password</label>
       <div class="field-wrap">
         <div class="input-wrap">
-          <input type="password" id="confirm" placeholder="Repeat your spell..." />
+          <input type="password" id="confirm" name="confirm_password" placeholder="Repeat your spell..." />
           <button type="button" class="toggle-pw" data-target="confirm">👁</button>
         </div>
         <span class="field-status" id="confirmStatus"></span>
@@ -85,20 +85,18 @@
     </div>
  
     <div class="field">
-      <label for="role">Role</label>
+      <label for="house">House</label>
       <div class="field-wrap">
-        <select id="role">
-          <option value="" disabled selected>Select your house / role</option>
-          <option value="gryffindor">Student — Gryffindor</option>
-          <option value="slytherin">Student — Slytherin</option>
-          <option value="hufflepuff">Student — Hufflepuff</option>
-          <option value="ravenclaw">Student — Ravenclaw</option>
-          <option value="teacher">Professor</option>
-          <option value="admin">Administrator</option>
+        <select id="house" name="house">
+          <option value="" disabled selected>Select your house</option>
+          <option value="Gryffindor">Student — Gryffindor</option>
+          <option value="Slytherin">Student — Slytherin</option>
+          <option value="Hufflepuff">Student — Hufflepuff</option>
+          <option value="Ravenclaw">Student — Ravenclaw</option>
         </select>
-        <span class="field-status" id="roleStatus"></span>
+        <span class="field-status" id="houseStatus"></span>
       </div>
-      <p class="hint" id="roleHint"></p>
+      <p class="hint" id="houseHint"></p>
     </div>
  
     <button class="btn-submit" id="registerBtn" onclick="handleRegister()">

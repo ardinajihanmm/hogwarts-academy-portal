@@ -155,22 +155,30 @@ document.querySelectorAll('.toggle-pw').forEach(btn => {
 });
  
 function handleRegister() {
-  const v1 = validateUsername();
-  const v2 = validateEmail();
-  const v3 = validatePassword();
-  const v4 = validateConfirm();
-  const v5 = validateRole();
- 
-  if (!v1 || !v2 || !v3 || !v4 || !v5) {
-    const errEl = document.querySelector('input.err, select.err');
-    if (errEl) { errEl.classList.add('shake'); setTimeout(() => errEl.classList.remove('shake'), 500); errEl.focus(); }
-    return;
-  }
- 
-  const btn = getField('registerBtn');
-  btn.innerHTML = '<span class="btn-spinner"></span> Sending acceptance letter…';
-  btn.disabled = true;
-  setTimeout(() => { window.location.href = 'login.php'; }, 1800);
+    const username = document.getElementById('username').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirm  = document.getElementById('confirm').value;
+    const house    = document.getElementById('house').value; // ✅ bukan 'role'
+
+    const data = new FormData();
+    data.append('username',         username);
+    data.append('email',            email);
+    data.append('password',         password);
+    data.append('confirm_password', confirm);
+    data.append('house',            house); // ✅ key harus 'house'
+
+    fetch('../actions/register.php', { method: 'POST', body: data })
+        .then(r => r.json())
+        .then(res => {
+            if (res.success) {
+                alert(res.message);
+                window.location.href = 'login.php';
+            } else {
+                alert(res.message);
+            }
+        })
+        .catch(() => alert('Terjadi kesalahan jaringan.'));
 }
  
 document.addEventListener('keydown', e => { if (e.key === 'Enter') handleRegister(); });
