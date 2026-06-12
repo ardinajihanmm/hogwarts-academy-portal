@@ -278,6 +278,64 @@ hogwarts-academy-portal
 
 
 ---
+HASIL WEBSITE
+
+## Home
+![Home](TAMPILAN%20WEBSITE/home.png)
+
+## Login
+![Login](TAMPILAN%20WEBSITE/login.png)
+
+## Register
+![Register](TAMPILAN%20WEBSITE/register.png)
+
+## Student Dashboard
+![Student Dashboard](TAMPILAN%20WEBSITE/studentdashboard.png)
+
+## Admin Dashboard
+![Admin Dashboard](TAMPILAN%20WEBSITE/admindashboard.png)
+
+## Profile
+![Profile](TAMPILAN%20WEBSITE/profile.png)
+
+## Spell Book
+![Spell Book](TAMPILAN%20WEBSITE/spellbook.png)
+
+## Courses
+![Courses](TAMPILAN%20WEBSITE/courses.png)
+
+## Student CRUD
+![Student CRUD](TAMPILAN%20WEBSITE/studentcrud.png)
+
+## Spell CRUD
+![Spell CRUD](TAMPILAN%20WEBSITE/spellcrud.png)
+
+## Course CRUD
+![Course CRUD](TAMPILAN%20WEBSITE/coursecrud.png)
+
+## Add Course Form
+![Add Course Form](TAMPILAN%20WEBSITE/formcourse.png)
+
+## Add Spell Form
+![Add Spell Form](TAMPILAN%20WEBSITE/formspell.png)
+
+## Add Student Form
+![Add Student Form](TAMPILAN%20WEBSITE/formstudent.png)
+
+## Course Modal
+![Course Modal](TAMPILAN%20WEBSITE/modalcourse.png)
+
+## Spell Modal
+![Spell Modal](TAMPILAN%20WEBSITE/modalspel.png)
+
+## Logout
+![Logout](TAMPILAN%20WEBSITE/logout.png)
+
+## Logout Confirmation
+![Logout Confirmation](TAMPILAN%20WEBSITE/logout2.png)
+
+## About
+![About](TAMPILAN%20WEBSITE/about.png)
 
 # Catatan
 
