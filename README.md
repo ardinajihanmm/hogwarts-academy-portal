@@ -26,6 +26,9 @@
 # Link youtube DEMO WEBSITE
 https://youtu.be/zk_mnXVmEZc
 
+# link website yang sudah dihosting
+https://a1.athafa.cloud/*
+
 # Deskripsi Project
 
 Hogwarts Academy Portal merupakan website portal akademik bertema Harry Potter yang menghadirkan pengalaman belajar interaktif di dunia sihir Hogwarts.
@@ -328,7 +331,7 @@ HASIL WEBSITE
 ![Course Modal](TAMPILAN%20WEBSITE/modalcourse.png)
 
 ## Spell Modal
-![Spell Modal](TAMPILAN%20WEBSITE/modalspel.png)
+![Spell Modal](TAMPILAN%20WEBSITE/modalspell.png)
 
 ## Logout
 ![Logout](TAMPILAN%20WEBSITE/logout.png)
