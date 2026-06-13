@@ -313,10 +313,10 @@ HASIL WEBSITE
 ![Student CRUD](TAMPILAN%20WEBSITE/studentcrud.png)
 
 ## Spell CRUD
-![Spell CRUD](TAMPILAN%20WEBSITE/spellcrud.png)
+![Spell CRUD](TAMPILAN%20WEBSITE/spellscrud.png)
 
 ## Course CRUD
-![Course CRUD](TAMPILAN%20WEBSITE/coursecrud.png)
+![Course CRUD](TAMPILAN%20WEBSITE/coursescrud.png)
 
 ## Add Course Form
 ![Add Course Form](TAMPILAN%20WEBSITE/formcourse.png)
